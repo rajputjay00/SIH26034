@@ -1,0 +1,21 @@
+# ==============================================================================
+# NIRIKSHAN .dockerignore
+# ==============================================================================
+
+.git/
+.venv/
+venv/
+node_modules/
+frontend/
+storage/
+*.db
+*.db-shm
+*.db-wal
+.pytest_cache/
+__pycache__/
+*.pyc
+.env
+.env.local
+.next/
+tmp/
+scratch/
