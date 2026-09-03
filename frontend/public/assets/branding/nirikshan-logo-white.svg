@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 64" fill="none">
+  <!-- Nirikshan 'N' Mark with Ruler & Magnifier (White version for dark backgrounds) -->
+  <g transform="translate(4, 6)">
+    <!-- Orange Ruler Left Leg -->
+    <rect x="0" y="2" width="10" height="48" rx="2" fill="#F28C28" />
+    <!-- Ruler Ticks -->
+    <line x1="10" y1="10" x2="5" y2="10" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="10" y1="18" x2="3" y2="18" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="10" y1="26" x2="5" y2="26" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="10" y1="34" x2="3" y2="34" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="10" y1="42" x2="5" y2="42" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    
+    <!-- White Diagonal Bar -->
+    <polygon points="6,6 16,6 40,46 30,46" fill="#FFFFFF" />
+    
+    <!-- White Right Leg with Magnifying Glass -->
+    <rect x="34" y="14" width="9" height="36" rx="2" fill="#FFFFFF" />
+    <!-- Magnifier Lens -->
+    <circle cx="38.5" cy="11" r="9" fill="none" stroke="#FFFFFF" stroke-width="3" />
+    <circle cx="38.5" cy="11" r="6" fill="#1769AA" opacity="0.6" />
+    <path d="M42 7 L45 4" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+    <!-- Corner Framing Accents -->
+    <path d="M-3,0 L-3,-3 L0,-3" stroke="#94A3B8" stroke-width="1.5" fill="none" />
+    <path d="M50,0 L53,-3 L50,-3" stroke="#94A3B8" stroke-width="1.5" fill="none" />
+    <path d="M-3,50 L-3,53 L0,53" stroke="#94A3B8" stroke-width="1.5" fill="none" />
+    <path d="M50,50 L53,53 L50,53" stroke="#94A3B8" stroke-width="1.5" fill="none" />
+  </g>
+
+  <!-- Typography -->
+  <g transform="translate(68, 0)">
+    <text x="0" y="32" font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="25" font-weight="900" letter-spacing="1.5" fill="#FFFFFF">
+      NIRIKSHAN
+    </text>
+    <text x="0" y="47" font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="7.5" font-weight="700" letter-spacing="0.8" fill="#F28C28">
+      LEGAL METROLOGY COMPLIANCE
+    </text>
+    <text x="0" y="56" font-family="system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="7" font-weight="700" letter-spacing="1.2" fill="#CBD5E1">
+      &amp; INSPECTION SYSTEM
+    </text>
+  </g>
+</svg>

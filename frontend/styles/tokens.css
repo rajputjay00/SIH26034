@@ -1,0 +1,12 @@
+:root {
+  --color-gov-bg: #F8FAFC;
+  --color-gov-surface: #FFFFFF;
+  --color-gov-border: #E2E8F0;
+  --color-gov-navy: #1E3A8A;
+  --color-gov-primary: #2563EB;
+  --color-gov-text: #0F172A;
+  --color-gov-muted: #64748B;
+  
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}

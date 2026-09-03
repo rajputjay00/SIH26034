@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Nirikshan 'N' Mark with Ruler & Magnifier -->
+  <g transform="translate(6, 6)">
+    <!-- Orange Ruler Left Leg -->
+    <rect x="0" y="2" width="10" height="48" rx="2" fill="#F28C28" />
+    <!-- Ruler Ticks -->
+    <line x1="10" y1="10" x2="5" y2="10" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="10" y1="18" x2="3" y2="18" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="10" y1="26" x2="5" y2="26" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="10" y1="34" x2="3" y2="34" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="10" y1="42" x2="5" y2="42" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" />
+    
+    <!-- Navy Diagonal Bar -->
+    <polygon points="6,6 16,6 40,46 30,46" fill="#0B2A4A" />
+    
+    <!-- Navy Right Leg with Magnifying Glass -->
+    <rect x="34" y="14" width="9" height="36" rx="2" fill="#0B2A4A" />
+    <!-- Magnifier Lens -->
+    <circle cx="38.5" cy="11" r="9" fill="none" stroke="#0B2A4A" stroke-width="3" />
+    <circle cx="38.5" cy="11" r="6" fill="#E5F0FA" opacity="0.6" />
+    <path d="M42 7 L45 4" stroke="#0B2A4A" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+</svg>

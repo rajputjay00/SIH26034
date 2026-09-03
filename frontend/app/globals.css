@@ -1,0 +1,15 @@
+@import '../styles/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: var(--color-gov-bg);
+  color: var(--color-gov-text);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+}
+
+.mono-code {
+  font-family: var(--font-mono);
+}
