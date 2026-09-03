@@ -15,12 +15,12 @@ def _parse_origins(val: Union[str, List[str], None]) -> List[str]:
             except Exception:
                 origins = [v.strip().strip("\"'") for v in val.strip("[]").split(",") if v.strip()]
         else:
-            origins = [o.strip() for o in val.split(",") if o.strip()]
+            origins = [o.strip().strip("\"'") for o in val.split(",") if o.strip()]
     else:
         origins = ["http://localhost:3000", "http://127.0.0.1:3000"]
 
     # If FRONTEND_URL is additionally specified, include it
-    frontend_url = os.getenv("FRONTEND_URL", "").strip()
+    frontend_url = os.getenv("FRONTEND_URL", "").strip().strip("\"'")
     if frontend_url and frontend_url not in origins:
         origins.append(frontend_url)
 

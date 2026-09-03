@@ -47,9 +47,14 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+@app.on_event("startup")
+async def startup_event():
+    logger.info(f"System starting in {settings.ENVIRONMENT} mode. CORS Allowed Origins: {settings.ALLOWED_ORIGINS}")
+
 
 # Custom exception handler for structured application errors
 @app.exception_handler(LegalMetrixException)
