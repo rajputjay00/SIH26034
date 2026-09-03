@@ -28,7 +28,7 @@ import {
   fetchInspectionsSummary,
   createInspectionCase
 } from '../../lib/api';
-import { formatDateTime } from '../../lib/utils';
+import { formatDateTime } from "@/lib/utils";
 
 export const LiveActivityQueues: React.FC = () => {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Play, RefreshCw, Eye, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { EvidenceItem } from '../../types';
-import { formatDateTime, truncateHash } from '../../lib/utils';
+import { formatDateTime, truncateHash } from "@/lib/utils";
 
 interface EvidenceGalleryProps {
   items: EvidenceItem[];

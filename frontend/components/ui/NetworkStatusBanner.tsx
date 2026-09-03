@@ -12,7 +12,7 @@ import {
   ChevronUp,
   X
 } from 'lucide-react';
-import { OfflineEvidenceQueue, OfflineQueueItem } from '../../lib/offlineQueue';
+import { OfflineEvidenceQueue, OfflineQueueItem } from "@/lib/offlineQueue";
 
 export const NetworkStatusBanner: React.FC = () => {
   const [isOnline, setIsOnline] = useState<boolean>(true);

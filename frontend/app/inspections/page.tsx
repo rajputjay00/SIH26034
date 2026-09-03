@@ -24,7 +24,7 @@ import {
 import { Badge } from '../../components/ui/Badge';
 import { InspectionSummaryItem } from '../../types';
 import { fetchInspectionsSummary, createInspectionCase } from '../../lib/api';
-import { formatDateTime } from '../../lib/utils';
+import { formatDateTime } from "@/lib/utils";
 
 type QueueTab = 'ALL' | 'PROCESSING' | 'PENDING_REVIEW' | 'REQUIRES_REVIEW' | 'READY_FOR_FINALISATION' | 'FINALISED';
 
