@@ -12,24 +12,24 @@ import {
   VisualAnomaly
 } from '../types';
 
-function getApiBaseUrl(): string {
-  if (typeof window !== 'undefined') {
-    const hostname = window.location.hostname;
-    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
-      return 'https://sih26034-5sux.onrender.com/api/v1';
-    }
-  }
-
-  const envKey = 'NEXT_PUBLIC_API_URL';
-  const envUrl = process.env[envKey] || process.env.NEXT_PUBLIC_API_BASE_URL;
+export function getApiBaseUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL;
   if (envUrl && envUrl.trim() !== '') {
     const clean = envUrl.trim().replace(/\/+$/, '');
     return clean.endsWith('/api/v1') ? clean : `${clean}/api/v1`;
   }
-  return 'http://127.0.0.1:8000/api/v1';
+
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://127.0.0.1:8000/api/v1';
+    }
+  }
+
+  return 'https://sih26034-5sux.onrender.com/api/v1';
 }
 
-const API_BASE = { toString: () => getApiBaseUrl() } as unknown as string;
+export const API_BASE = { toString: () => getApiBaseUrl() } as unknown as string;
 
 let cachedToken: string | null = null;
 
