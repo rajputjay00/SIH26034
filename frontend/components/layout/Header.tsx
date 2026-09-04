@@ -214,7 +214,7 @@ export const Header: React.FC = () => {
             </div>
           ) : (
             <Link
-              href="/inspections"
+              href="/login"
               className="hidden sm:inline-flex items-center space-x-1 bg-slate-100 hover:bg-slate-200 text-nirikshan-navy text-xs font-semibold px-2.5 py-1.5 rounded-brand transition-colors border border-slate-300"
             >
               <LogIn className="w-3.5 h-3.5" />

@@ -51,26 +51,36 @@ export async function getAuthToken(forceRefresh = false): Promise<string> {
     return cachedToken;
   }
 
-  try {
-    const res = await fetch(`${API_BASE}/auth/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: 'officer1', password: 'password123' }),
-    });
-    if (res.ok) {
-      const data = await res.json();
-      cachedToken = data.access_token;
-      if (typeof window !== 'undefined' && cachedToken) {
-        localStorage.setItem('token', cachedToken);
-        localStorage.setItem('user_id', 'OFFICER-IND-1001');
-        localStorage.setItem('role', 'OFFICER');
-      }
-      return cachedToken || '';
-    }
-  } catch (err) {
-    console.error('Auto-login failed:', err);
-  }
   return '';
+}
+
+export async function login(username: string, password: string):Promise<void> {
+  const res = await fetch(`${API_BASE}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  });
+  if (res.ok) {
+    const data = await res.json();
+    cachedToken = data.access_token;
+    if (typeof window !== 'undefined' && cachedToken) {
+      localStorage.setItem('token', cachedToken);
+      localStorage.setItem('user_id', username);
+      localStorage.setItem('role', 'OFFICER');
+    }
+  } else {
+    throw new Error('Authentication failed');
+  }
+}
+
+export function logout() {
+  cachedToken = null;
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user_id');
+    localStorage.removeItem('role');
+    window.location.href = '/login';
+  }
 }
 
 export async function apiFetch(input: string, init: RequestInit = {}): Promise<Response> {
@@ -82,18 +92,9 @@ export async function apiFetch(input: string, init: RequestInit = {}): Promise<R
 
   let res = await fetch(input, { ...init, headers });
 
-  // Auto-refresh token and retry on 401 Unauthorized
+  // On 401 Unauthorized, clear auth and redirect to login
   if (res.status === 401) {
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token');
-    }
-    cachedToken = null;
-    token = await getAuthToken(true);
-    if (token) {
-      const retryHeaders = new Headers(init.headers || {});
-      retryHeaders.set('Authorization', `Bearer ${token}`);
-      res = await fetch(input, { ...init, headers: retryHeaders });
-    }
+    logout();
   }
 
   return res;

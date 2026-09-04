@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -61,6 +61,7 @@ import {
   downloadReportPdf
 } from '../../../lib/api';
 import { formatDateTime } from '../../../lib/utils';
+import { useAuth } from '../../../hooks/useAuth';
 
 type ActiveTab =
   | 'overview'
@@ -109,7 +110,17 @@ export default function CaseDetailPage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [pipelineMessage, setPipelineMessage] = useState<string>('');
 
+  const { isAuthenticated, loading: authLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      router.replace('/login');
+    }
+  }, [isAuthenticated, authLoading, router]);
+
   const loadCaseData = async () => {
+    if (!isAuthenticated) return;
     try {
       setLoading(true);
       const res = await fetchCaseReviewSummary(inspectionId);
@@ -125,10 +136,10 @@ export default function CaseDetailPage() {
   };
 
   useEffect(() => {
-    if (inspectionId) {
+    if (inspectionId && isAuthenticated) {
       loadCaseData();
     }
-  }, [inspectionId]);
+  }, [inspectionId, isAuthenticated]);
 
   const handleDirectFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || !e.target.files[0]) return;

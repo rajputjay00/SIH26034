@@ -25,11 +25,13 @@ import { Badge } from '../../components/ui/Badge';
 import { InspectionSummaryItem } from '../../types';
 import { fetchInspectionsSummary, createInspectionCase } from '../../lib/api';
 import { formatDateTime } from "@/lib/utils";
+import { useAuth } from '../../hooks/useAuth';
 
 type QueueTab = 'ALL' | 'PROCESSING' | 'PENDING_REVIEW' | 'REQUIRES_REVIEW' | 'READY_FOR_FINALISATION' | 'FINALISED';
 
 export default function InspectionsPage() {
   const router = useRouter();
+  const { isAuthenticated, loading: authLoading } = useAuth();
   const [activeTab, setActiveTab] = useState<QueueTab>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [determinationFilter, setDeterminationFilter] = useState('');
@@ -45,7 +47,14 @@ export default function InspectionsPage() {
   const [caseNotes, setCaseNotes] = useState('');
   const [creating, setCreating] = useState(false);
 
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      router.replace('/login');
+    }
+  }, [isAuthenticated, authLoading, router]);
+
   const loadInspections = async () => {
+    if (!isAuthenticated) return;
     try {
       setLoading(true);
       const res = await fetchInspectionsSummary({

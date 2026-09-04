@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { useAuth } from '@/hooks/useAuth';
 import {
   ArrowLeft,
   Camera,
@@ -65,8 +66,17 @@ export default function CaseWorkbenchPage() {
   const [inspectingEvidence, setInspectingEvidence] = useState<EvidenceItem | null>(null);
   const [inspectingOCR, setInspectingOCR] = useState<OCRResult[]>([]);
 
+  const { isAuthenticated, loading: authLoading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      router.replace('/login');
+    }
+  }, [isAuthenticated, authLoading, router]);
+
   const loadCaseData = async () => {
-    if (!inspectionId) return;
+    if (!inspectionId || !isAuthenticated) return;
     try {
       setLoading(true);
       const [evidence, fields, findings, calibrations, measurements, anomalies] = await Promise.all([
@@ -91,8 +101,10 @@ export default function CaseWorkbenchPage() {
   };
 
   useEffect(() => {
-    loadCaseData();
-  }, [inspectionId]);
+    if (isAuthenticated) {
+      loadCaseData();
+    }
+  }, [inspectionId, isAuthenticated]);
 
 
   const handleEvidenceUploaded = (item: EvidenceItem) => {
