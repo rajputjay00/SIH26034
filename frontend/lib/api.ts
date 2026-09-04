@@ -16,17 +16,13 @@ function getApiBaseUrl(): string {
   if (typeof window !== 'undefined') {
     const hostname = window.location.hostname;
     if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
-      const envUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL;
-      if (envUrl && !envUrl.includes('127.0.0.1') && !envUrl.includes('localhost')) {
-        const clean = envUrl.trim().replace(/\/+$/, '');
-        return clean.endsWith('/api/v1') ? clean : `${clean}/api/v1`;
-      }
       return 'https://sih26034-5sux.onrender.com/api/v1';
     }
   }
 
-  const envUrl = process.env.NEXT_PUBLIC_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL;
-  if (envUrl) {
+  const envKey = 'NEXT_PUBLIC_API_URL';
+  const envUrl = process.env[envKey] || process.env.NEXT_PUBLIC_API_BASE_URL;
+  if (envUrl && envUrl.trim() !== '') {
     const clean = envUrl.trim().replace(/\/+$/, '');
     return clean.endsWith('/api/v1') ? clean : `${clean}/api/v1`;
   }
