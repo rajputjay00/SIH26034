@@ -18,10 +18,16 @@ function getApiBaseUrl(): string {
     const clean = envUrl.trim().replace(/\/+$/, '');
     return clean.endsWith('/api/v1') ? clean : `${clean}/api/v1`;
   }
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname;
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+      return 'https://sih26034-5sux.onrender.com/api/v1';
+    }
+  }
   return 'http://127.0.0.1:8000/api/v1';
 }
 
-const API_BASE = getApiBaseUrl();
+const API_BASE = { toString: () => getApiBaseUrl() } as unknown as string;
 
 let cachedToken: string | null = null;
 
