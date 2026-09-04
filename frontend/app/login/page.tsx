@@ -17,7 +17,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (!authLoading && isAuthenticated) {
-      router.replace('/inspections');
+      router.replace('/');
     }
   }, [isAuthenticated, authLoading, router]);
 
@@ -33,7 +33,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await login(username, password);
-      router.push('/inspections');
+      router.push('/');
     } catch (err: any) {
       setError(err.message || 'Invalid credentials. Please try again.');
       setLoading(false);
